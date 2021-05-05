@@ -105,6 +105,11 @@ BOOL CTesterHardwareMCPowerSensorDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
+	CString strTemp;
+	strTemp = "0.00";
+	m_Text_Offset.SetWindowTextW(LPCTSTR(strTemp));
+	strTemp = "2385";
+	m_Text_Freq.SetWindowTextW(LPCTSTR(strTemp));
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -162,12 +167,21 @@ HCURSOR CTesterHardwareMCPowerSensorDlg::OnQueryDragIcon()
 
 void CTesterHardwareMCPowerSensorDlg::OnBnClickedButtonUpdate()
 {
-	m_MCUsbPwrSen6GHS.SetFrequencyMHz(2835);
-	m_MCUsbPwrSen6GHS.SetOffsetdBm(0);
+
+	CString strTemp;
+
+
+	m_Text_Offset.GetWindowTextW(strTemp);
+	double offset = _wtof(strTemp);
+	m_MCUsbPwrSen6GHS.SetOffsetdBm(offset);
+
+	m_Text_Freq.GetWindowTextW(strTemp);
+	int freq = _ttoi(strTemp);
+	m_MCUsbPwrSen6GHS.SetFrequencyMHz(freq);
+
 
 	m_MCUsbPwrSen6GHS.ReadSensor();
 
-	CString strTemp;
 
 	strTemp.Format(_T("%.2f"), m_MCUsbPwrSen6GHS.GetPowerdBm());
 	m_Text_Power.SetWindowTextW(LPCTSTR(strTemp));
