@@ -162,20 +162,23 @@ HCURSOR CTesterHardwareMCPowerSensorDlg::OnQueryDragIcon()
 
 void CTesterHardwareMCPowerSensorDlg::OnBnClickedButtonUpdate()
 {
+	m_MCUsbPwrSen6GHS.SetFrequencyMHz(2835);
+	m_MCUsbPwrSen6GHS.SetOffsetdBm(0);
+
 	m_MCUsbPwrSen6GHS.ReadSensor();
 
 	CString strTemp;
 
-	strTemp.Format(_T("%.2f"), m_MCUsbPwrSen6GHS.m_Power);
+	strTemp.Format(_T("%.2f"), m_MCUsbPwrSen6GHS.GetPowerdBm());
 	m_Text_Power.SetWindowTextW(LPCTSTR(strTemp));
 
-	strTemp.Format(_T("%.2f"), m_MCUsbPwrSen6GHS.m_Temp);
+	strTemp.Format(_T("%.2f"), m_MCUsbPwrSen6GHS.GetTempC());
 	m_Text_Temp.SetWindowTextW(LPCTSTR(strTemp));
 
-	strTemp.Format(_T("%.2f"), m_MCUsbPwrSen6GHS.m_Offset);
+	strTemp.Format(_T("%.2f"), m_MCUsbPwrSen6GHS.GetOffsetdB());
 	m_Text_Offset.SetWindowTextW(LPCTSTR(strTemp));
 
-	strTemp.Format(_T("%.2f"), m_MCUsbPwrSen6GHS.m_Freq);
+	strTemp.Format(_T("%d"), m_MCUsbPwrSen6GHS.GetFreqMHz());
 	m_Text_Freq.SetWindowTextW(LPCTSTR(strTemp));
 
 }
