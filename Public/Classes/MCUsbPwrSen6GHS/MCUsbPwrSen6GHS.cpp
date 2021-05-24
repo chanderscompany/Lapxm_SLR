@@ -10,8 +10,6 @@ MCUsbPwrSen6GHS::MCUsbPwrSen6GHS() {
 	m_OffsetdBm = -999;
 	m_FrequencyMHz = -999;
 
-	int status;
-	short status1;
 	HRESULT hresult;
 	CLSID clsid;
 
@@ -20,8 +18,7 @@ MCUsbPwrSen6GHS::MCUsbPwrSen6GHS() {
 	hresult = CoCreateInstance(clsid, NULL, CLSCTX_INPROC_SERVER, __uuidof(_USB_PM), (LPVOID*)&pm1);
 	if (FAILED(hresult))
 	{
-		//Do Something
-		//return;
+		pm1 = NULL;
 	}
 
 }
@@ -52,6 +49,11 @@ double MCUsbPwrSen6GHS::GetOffsetdB() {
 
 
 int MCUsbPwrSen6GHS::ReadSensor() {
+
+	if (pm1 == NULL)
+	{
+		return -1;
+	}
 
 	m_PowerdBm = -999.9;
 	m_TemperatureC = -999.9;
