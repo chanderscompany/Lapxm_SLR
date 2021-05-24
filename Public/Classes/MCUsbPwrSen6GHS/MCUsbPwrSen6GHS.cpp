@@ -1,7 +1,8 @@
-#include "pch.h"
 #include "MCUsbPwrSen6GHS.h"
 
-//#include "D:\GIT\Lapxm_SLR\Tester_Hardware_MCPowerSensor\mcl_pm.dll"
+#import  "C:\Windows\SysWOW64\mcl_pm.dll"
+using namespace mcl_pm;
+_USB_PM* pm1;
 
 MCUsbPwrSen6GHS::MCUsbPwrSen6GHS() {
 	m_PowerdBm = -999.9;
@@ -9,9 +10,20 @@ MCUsbPwrSen6GHS::MCUsbPwrSen6GHS() {
 	m_OffsetdBm = -999;
 	m_FrequencyMHz = -999;
 
-//	mcl_pm64::usb_pm^ MyPTE1 = gcnew mcl_pm64::usb_pm(); // Referencing 
+	int status;
+	short status1;
+	HRESULT hresult;
+	CLSID clsid;
 
-	
+	CoInitialize(NULL);
+	hresult = CLSIDFromProgID(OLESTR("mcl_pm.USB_PM"), &clsid);
+	hresult = CoCreateInstance(clsid, NULL, CLSCTX_INPROC_SERVER, __uuidof(_USB_PM), (LPVOID*)&pm1);
+	if (FAILED(hresult))
+	{
+		//Do Something
+		//return;
+	}
+
 }
 
 void MCUsbPwrSen6GHS::SetFrequencyMHz(int freq) {
@@ -45,28 +57,25 @@ int MCUsbPwrSen6GHS::ReadSensor() {
 	m_TemperatureC = -999.9;
 	short Status = 0;
 
-	/*
-	MyPTE1->Open_Sensor();
-	if (MyPTE1->GetStatus() == 0)
+	pm1->Open_Sensor((_bstr_t)"");
+	if (pm1->GetStatus() == 0)
 	{
 		return -1;
 	}
 
-	m_Power = MyPTE1->ReadPower();
-	if (MyPTE1->GetStatus() == 0)
+	m_PowerdBm = pm1->ReadPower();
+	if (pm1->GetStatus() == 0)
 	{
 		return -1;
 	}
 
-	m_Temp = MyPTE1->GetDeviceTemperature("C");
-	if (MyPTE1->GetStatus() == 0)
+	m_TemperatureC = pm1->GetDeviceTemperature("C");
+	if (pm1->GetStatus() == 0)
 	{
 		return -1;
 	}
 
-	MyPTE1->Close_Sensor();
-
-*/
+	pm1->Close_Sensor();
 
 	return 0;
 }

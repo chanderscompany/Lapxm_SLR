@@ -1,4 +1,7 @@
 #pragma once
+
+#include <afxwin.h> 
+
 class MCUsbPwrSen6GHS
 {
 	public:
