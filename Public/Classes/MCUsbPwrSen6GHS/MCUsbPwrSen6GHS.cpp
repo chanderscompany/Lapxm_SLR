@@ -1,5 +1,10 @@
 #include "MCUsbPwrSen6GHS.h"
 
+// You must register the mcl_pm.dll dll
+// Copy mcl_pm.dll into C : \WINDOWS\SysWOW64\
+// Open CMD with admin rights
+// Type c : \WINDOWS\SysWOW64\Regsvr32 C : \WINDOWS\SysWOW64\mcl_pm.dll
+
 #import  "C:\Windows\SysWOW64\mcl_pm.dll"
 using namespace mcl_pm;
 _USB_PM* pm1;
@@ -9,6 +14,8 @@ MCUsbPwrSen6GHS::MCUsbPwrSen6GHS() {
 	m_TemperatureC = -999.9;
 	m_OffsetdBm = -999;
 	m_FrequencyMHz = -999;
+
+//	mcl_pm::USB_PM^ pm1 = gcnew mcl_pm::USB_PM();
 
 	HRESULT hresult;
 	CLSID clsid;

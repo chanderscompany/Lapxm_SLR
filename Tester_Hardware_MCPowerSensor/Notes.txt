@@ -1,0 +1,4 @@
+You must register the mcl_pm.dll dll
+* Copy mcl_pm.dll into C:\WINDOWS\SysWOW64\
+* Open CMD with admin rights
+* Type c:\WINDOWS\SysWOW64\Regsvr32 C:\WINDOWS\SysWOW64\mcl_pm.dll

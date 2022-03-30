@@ -1,0 +1,1 @@
+220330 - Runs on 64bit Windows when compiled in 32bit. - Can see temperature change when hit with a hair dryer
