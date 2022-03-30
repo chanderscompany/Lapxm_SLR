@@ -1,0 +1,7 @@
+220330 
+- Runs and generates a signal on the osciliscope that is 10ns wide
+- Works on 32bit Windows when compiled in 32bit
+- Works on 64bit Windows when compiled in 64bit
+- DOES NOT WORK on 64bit Windows when compiled in 32bit. Probably need to install the 32bit PulseBlaster driver on 64bit Windows. Don't know if that is possible but will be needed by Lapxm
+
+
