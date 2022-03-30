@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by TesterHardwareMCPowerSensor.rc
+// Used by TesterHardwarePulseBlaster.rc
 //
 #define IDM_ABOUTBOX                    0x0010
 #define IDD_ABOUTBOX                    100
@@ -17,6 +17,8 @@
 #define IDC_EDIT_FREQ                   1007
 #define IDC_BUTTON_UPDATE               1008
 #define IDC_BUTTON_START                1009
+#define IDC_BUTTON_START2               1010
+#define IDC_BUTTON_STOP                 1010
 
 // Next default values for new objects
 // 

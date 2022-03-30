@@ -66,6 +66,7 @@ BEGIN_MESSAGE_MAP(CTesterHardwarePulseBlasterDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON_START, &CTesterHardwarePulseBlasterDlg::OnBnClickedButtonStart)
+	ON_BN_CLICKED(IDC_BUTTON_STOP, &CTesterHardwarePulseBlasterDlg::OnBnClickedButtonStop)
 END_MESSAGE_MAP()
 
 
@@ -159,4 +160,10 @@ HCURSOR CTesterHardwarePulseBlasterDlg::OnQueryDragIcon()
 void CTesterHardwarePulseBlasterDlg::OnBnClickedButtonStart()
 {
 	PB.Start();
+}
+
+
+void CTesterHardwarePulseBlasterDlg::OnBnClickedButtonStop()
+{
+	PB.Stop();
 }
